@@ -4,15 +4,16 @@ const csvParser = require('../utils/csvParser');
 const translatorService = require('../services/translatorService');
 
 const Farmer = require('../models/Farmer');
+const fileUploadMiddleware = require('../middlewares/fileUploadMiddleware');
 
 const router = express.Router();
 
 //Endpoint for uploading and translating farmer data
-router.post('/', authMiddleware, async(req, res, next)=>{
+router.post('/', authMiddleware, fileUploadMiddleware, async(req, res, next)=>{
 
     try {
-        const csvFile = req.files.csvFile;
-        const farmers = csvParser.parse(csvFile);
+        const csvFile = req.file;
+        const farmers =await csvParser(csvFile);
         const translation = await translatorService.translateFarmers(farmers);
         await Farmer.bulkCreate(translation);
         res.json({message: 'Farmers data uploaded and translated successfully'});
