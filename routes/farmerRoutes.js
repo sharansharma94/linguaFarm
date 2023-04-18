@@ -3,6 +3,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const csvParser = require('../utils/csvParser');
 const translatorService = require('../services/translatorService');
 
+
 const Farmer = require('../models/Farmer');
 const fileUploadMiddleware = require('../middlewares/fileUploadMiddleware');
 
@@ -14,7 +15,7 @@ router.post('/', authMiddleware, fileUploadMiddleware, async (req, res, next) =>
     try {
         const csvFile = req.file;
         const farmers = await csvParser(csvFile);
-        const translation = await translatorService.translateFarmers(farmers, 'es');
+        const translation = await translatorService.translateFarmers(farmers);
         await Farmer.bulkCreate(translation.map((farmer) => ({
             phoneNumber: farmer.phoneNumber,
             farmerName: farmer.farmerName,
@@ -28,6 +29,7 @@ router.post('/', authMiddleware, fileUploadMiddleware, async (req, res, next) =>
 
         res.json({ message: 'Farmers data uploaded and translated successfully' });
     }
+
     catch (err) {
         console.error('Error importing and translating CSV data:', err.message);
         next(err);
