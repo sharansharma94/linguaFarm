@@ -2,7 +2,7 @@ const express = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
 const csvParser = require('../utils/csvParser');
 const translatorService = require('../services/translatorService');
-const supportedLanguages = require('../config/languages');
+
 
 const Farmer = require('../models/Farmer');
 const fileUploadMiddleware = require('../middlewares/fileUploadMiddleware');
@@ -15,21 +15,21 @@ router.post('/', authMiddleware, fileUploadMiddleware, async (req, res, next) =>
     try {
         const csvFile = req.file;
         const farmers = await csvParser(csvFile);
-        for (const targetLanguage of supportedLanguages) {
-            const translation = await translatorService.translateFarmers(farmers, targetLanguage);
-            await Farmer.bulkCreate(translation.map((farmer) => ({
-                phoneNumber: farmer.phoneNumber,
-                farmerName: farmer.farmerName,
-                stateName: farmer.stateName,
-                districtName: farmer.districtName,
-                villageName: farmer.villageName,
-                language: farmer.language,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            })));
-        }
+        const translation = await translatorService.translateFarmers(farmers);
+        await Farmer.bulkCreate(translation.map((farmer) => ({
+            phoneNumber: farmer.phoneNumber,
+            farmerName: farmer.farmerName,
+            stateName: farmer.stateName,
+            districtName: farmer.districtName,
+            villageName: farmer.villageName,
+            language: farmer.language,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        })));
+
         res.json({ message: 'Farmers data uploaded and translated successfully' });
     }
+
     catch (err) {
         console.error('Error importing and translating CSV data:', err.message);
         next(err);
