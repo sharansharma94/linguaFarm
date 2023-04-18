@@ -1,9 +1,10 @@
 const { Translate } = require('@google-cloud/translate').v2;
-// const translate = new Translate({key: process.env.GOOGLE_TRANSLATE_API_KEY});
+const translate = new Translate({
+  projectId: process.env.GOOGLE_PROJECT_ID,
+  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+});
 
-const translate = {translate: (name,target) => {
-  return [name]
-} }
+
 const translateFarmers = async (farmers, targetLanguage) => {
   try {
     const translatedFarmers = [];
