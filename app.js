@@ -3,9 +3,9 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-const farmerRoutes = require('./routes/farmerRoutes');
-const authRoutes = require('./routes/authRoutes');
-const errorHandlerMiddleware = require('./middlewares/errorHandlerMiddleware');
+const farmerRoutes = require('./src/routes/farmerRoutes');
+const authRoutes = require('./src/routes/authRoutes');
+const errorHandlerMiddleware = require('./src/middlewares/errorHandlerMiddleware');
 
 const app = express();
 
