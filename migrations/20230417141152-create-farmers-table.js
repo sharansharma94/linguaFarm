@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Farmers', {
+    await queryInterface.createTable('farmers', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,23 +11,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       phone_number: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       farmer_name: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       state_name: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       district_name: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       village_name: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -37,11 +32,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      language: {
+        type: Sequelize.STRING,
+        allowNull: false,
       }
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Farmers');
+    await queryInterface.dropTable('farmers');
   }
 };

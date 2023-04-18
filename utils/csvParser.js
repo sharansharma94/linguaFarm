@@ -8,7 +8,17 @@ function parseCSV(file) {
 
     fs.createReadStream(file.path)
       .pipe(csv())
-      .on('data', (data) => results.push(data))
+      .on('data', (data) => {
+        results.push({
+          phone_number: data.phone_number,
+          farmer_name: data.farmer_name,
+          state_name: data.state_name,
+          district_name: data.district_name,
+          village_name: data.village_name,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+      })
       .on('end', () => {
         resolve(results);
       })
