@@ -16,6 +16,9 @@ config/config.json
 # Logs
 /log
 
+# Uploads
+uploads/
+
 # OS generated files
 .DS_Store
 
