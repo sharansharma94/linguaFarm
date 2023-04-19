@@ -36,6 +36,12 @@ The following improvements can be made to the application:
 ## Todo
 
 - [x] authentication
-- [] user Validation / verification 
-- [] git hooks 
+- [ ] Logging
+- [ ] user Validation / Sanitization 
+- [ ] Testing
+- [ ] git hooks 
+- [ ] Error handling
+- [ ] API Documentation
+- [ ] Security (htttps / Secure headers )
+- [ ] Deployment Configurations
  
