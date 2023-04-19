@@ -4,9 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
+  },
   "license": "ISC",
   "dependencies": {
     "@google-cloud/translate": "^7.2.1",
@@ -19,5 +25,10 @@
     "multer": "^1.4.5-lts.1",
     "pg": "^8.10.0",
     "sequelize": "^6.31.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "sinon": "^15.0.3",
+    "supertest": "^6.3.3"
   }
 }

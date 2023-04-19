@@ -20,7 +20,6 @@ const translateFarmers = async (farmers) => {
 
 
         return {
-          ...farmer,
           farmerName: nameTranslation,
           stateName: stateTranslation,
           districtName: districtTranslation,
@@ -37,7 +36,6 @@ const translateFarmers = async (farmers) => {
 
     return translatedFarmers;
   } catch (error) {
-    console.error(error);
     throw new Error('Failed to translate farmers');
   }
 };
