@@ -16,7 +16,7 @@ app.use(express.json())
 app.use('/farmers', farmerRoutes);
 
 // authentication Resource
-// app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 app.use(errorHandlerMiddleware);
 
