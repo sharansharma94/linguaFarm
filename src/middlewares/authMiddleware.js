@@ -16,7 +16,7 @@ const authMiddleware = async (req, res, next) => {
 
     const secretKey = process.env.JWT_SECRET || 'your_jwt_secret';
 
-    jwt.verify(token, secretKey, (error, decoded) => {
+    await jwt.verify(token, secretKey, (error, decoded) => {
       if (error) {
         return res.status(401).json({ message: 'Failed to authenticate token.' });
       }
