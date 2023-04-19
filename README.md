@@ -30,3 +30,10 @@ The following improvements can be made to the application:
 1. Directly parse and store data into the database and then have an event-driven system to trigger all translations to happen in the background.
 
 2. Store data in a separate FarmerTranslations table. The Farmers table schema will only store the original data. When inserting translated data, first insert the original data into the Farmers table and then insert the translated data into the FarmerTranslations table with the corresponding farmerId.
+
+## Todo
+
+[] authentication
+[] user Validation / verification 
+[] git hooks 
+ 
