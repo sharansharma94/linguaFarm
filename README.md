@@ -15,6 +15,8 @@ To run the database migration scripts, use the following commands:
 
 ```bash
     npx sequelize-cli migration:generate --name create-farmers-table
+    npx sequelize-cli migration:generate --name=create-users-table
+
     npx sequelize-cli init
     npx sequelize-cli db:migrate
 ```
@@ -33,7 +35,7 @@ The following improvements can be made to the application:
 
 ## Todo
 
-[] authentication
-[] user Validation / verification 
-[] git hooks 
+- [x] authentication
+- [] user Validation / verification 
+- [] git hooks 
  
